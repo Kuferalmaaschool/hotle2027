@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>حزم الفندق</title>
+
+<link rel="stylesheet" href="Packages.css">
+
+</head>
+<body>
+
+<!-- الشريط العلوي -->
+<div class="topbar">
+
+<div class="tools">
+
+<button onclick="increaseFont()">A+</button>
+<button onclick="decreaseFont()">A-</button>
+<button onclick="toggleDark()">🌙</button>
+<button onclick="speakText()">🔊</button>
+<button onclick="toggleLang()">EN / AR</button>
+
+</div>
+
+<div class="hotel">
+
+<img src="logo.png">
+<b>Loving Homes</b>
+
+</div>
+
+</div>
+
+
+<!-- شريط الصفحات -->
+
+<div class="navbar">
+
+<a id="home" href="home.html">الرئيسية</a>
+<a id="packages" href="Packages.html">الحزم</a>
+<a id="rating" href="rating.html">التقييم</a>
+<a id="contact" href="contact.html">اتصل بنا</a>
+<a id="book" href="booking.html">احجز الآن</a>
+<a id="reviews" href="rating.html">آراء العملاء</a>
+<a id="products" href="products.html">المنتجات</a>
+<a id="services" href="services.html">الخدمات</a>
+<a id="about" href="about.html">عن الفندق</a>
+<a id="gallery" href="gallery.html">معرض الصور</a>
+
+</div>
+
+
+<!-- القسم الرئيسي -->
+
+<div class="hero">
+
+<div class="hero-text">
+
+<h1 id="welcomeTitle">اختر الحزمة المثالية لكلبك</h1>
+
+<p id="welcomeText">
+نقدم لكلبك أفضل الحزم لتجربة إقامة لا تُنسى مع أنشطة ممتعة ورعاية مميزة.
+</p>
+
+</div>
+
+<img src="yy.jpg">
+
+</div>
+
+
+<!-- قسم الحزم -->
+
+<div class="why">
+
+<h2 id="whyTitle">حزمنا</h2>
+
+<div class="cards">
+
+
+<!-- الحزمة المتميزة -->
+
+<div class="card featured">
+
+<h3 id="p1-title">
+المتميزة <span class="tag">الأكثر طلباً</span>
+</h3>
+
+<p id="p1-desc">
+أفضل تجربة إقامة فاخرة لكلبك.
+</p>
+
+<ul>
+
+<li id="p1-li1">
+المشي أربع مرات / أربعة أنشطة يومياً
+</li>
+
+<li id="p1-li2">
+مساحة عشب خاصة
+</li>
+
+<li id="p1-li3">
+تحديثات وصور يومية
+</li>
+
+<li id="p1-li4">
+مكافآت
+</li>
+
+</ul>
+
+<button
+class="book-btn"
+data-package="المتميزة"
+onclick="bookPackage(this)"
+>
+احجز الآن
+</button>
+
+</div>
+
+
+<!-- الحزمة الكلاسيكية -->
+
+<div class="card">
+
+<h3 id="p2-title">
+الكلاسيكية
+</h3>
+
+<p id="p2-desc">
+راحة واهتمام يومي لكلبك.
+</p>
+
+<ul>
+
+<li id="p2-li1">
+المشي ثلاث مرات / ثلاثة أنشطة يومياً
+</li>
+
+<li id="p2-li2">
+حظيرة لعب داخلية
+</li>
+
+<li id="p2-li3">
+منطقة للاسترخاء
+</li>
+
+<li id="p2-li4">
+جلسة حلاقة وتنظيف
+</li>
+
+</ul>
+
+<button
+class="book-btn"
+data-package="الكلاسيكية"
+onclick="bookPackage(this)"
+>
+احجز الآن
+</button>
+
+</div>
+
+
+<!-- حزمة اليوم -->
+
+<div class="card">
+
+<h3 id="p3-title">
+اليوم
+</h3>
+
+<p id="p3-desc">
+رعاية يومية ممتعة لكلبك.
+</p>
+
+<ul>
+
+<li id="p3-li1">
+المشي مرتين يومياً
+</li>
+
+<li id="p3-li2">
+منطقة لعب خارجية
+</li>
+
+<li id="p3-li3">
+مسار الرشاقة
+</li>
+
+<li id="p3-li4">
+الحفر في الرمل
+</li>
+
+</ul>
+
+<button
+class="book-btn"
+data-package="اليوم"
+onclick="bookPackage(this)"
+>
+احجز الآن
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+
+/* تكبير الخط */
+
+function increaseFont(){
+document.body.style.fontSize="larger";
+}
+
+
+/* تصغير الخط */
+
+function decreaseFont(){
+document.body.style.fontSize="smaller";
+}
+
+
+
+/* الوضع الليلي */
+
+function toggleDark(){
+
+if(document.body.style.background==="white"){
+
+document.body.style.background="#0f172a";
+document.body.style.color="white";
+
+}
+
+else{
+
+document.body.style.background="white";
+document.body.style.color="black";
+
+}
+
+}
+
+
+
+/* تحويل النص إلى صوت */
+
+function speakText(){
+
+let text=document.body.innerText;
+
+let speech=new SpeechSynthesisUtterance(text);
+
+speech.lang=lang==="ar"?"ar-SA":"en-US";
+
+speechSynthesis.speak(speech);
+
+}
+
+
+
+/* تغيير اللغة */
+
+let lang="ar";
+
+function toggleLang(){
+
+
+if(lang==="ar"){
+
+document.documentElement.dir="ltr";
+
+
+/* Navbar */
+
+document.getElementById("home").innerText="Home";
+document.getElementById("packages").innerText="Packages";
+document.getElementById("rating").innerText="Rating";
+document.getElementById("contact").innerText="Contact";
+document.getElementById("book").innerText="Book Now";
+document.getElementById("reviews").innerText="Customer Reviews";
+document.getElementById("products").innerText="Products";
+document.getElementById("services").innerText="Services";
+document.getElementById("about").innerText="About Hotel";
+document.getElementById("gallery").innerText="Gallery";
+
+
+/* Hero */
+
+document.getElementById("welcomeTitle").innerText=
+"Choose the perfect package for your dog";
+
+document.getElementById("welcomeText").innerText=
+"We offer the best care packages to give your dog a fun and comfortable stay.";
+
+
+/* Packages */
+
+document.getElementById("whyTitle").innerText="Our Packages";
+
+
+/* Premium */
+
+document.getElementById("p1-title").innerText="Premium";
+document.getElementById("p1-desc").innerText="The best luxury stay for your dog.";
+document.getElementById("p1-li1").innerText="Walk four times / four activities daily";
+document.getElementById("p1-li2").innerText="Private grass area";
+document.getElementById("p1-li3").innerText="Daily updates and photos";
+document.getElementById("p1-li4").innerText="Special rewards";
+
+
+/* Classic */
+
+document.getElementById("p2-title").innerText="Classic";
+document.getElementById("p2-desc").innerText="Comfort and daily care for your dog.";
+document.getElementById("p2-li1").innerText="Walk three times / three activities daily";
+document.getElementById("p2-li2").innerText="Indoor play area";
+document.getElementById("p2-li3").innerText="Relaxation area";
+document.getElementById("p2-li4").innerText="Grooming and cleaning session";
+
+
+/* Day */
+
+document.getElementById("p3-title").innerText="Day Care";
+document.getElementById("p3-desc").innerText="Fun daily care for your dog.";
+document.getElementById("p3-li1").innerText="Walk twice daily";
+document.getElementById("p3-li2").innerText="Outdoor play area";
+document.getElementById("p3-li3").innerText="Agility track";
+document.getElementById("p3-li4").innerText="Digging in sand";
+
+
+lang="en";
+
+}
+
+
+else{
+
+location.reload();
+
+}
+
+}
+
+
+
+/* حجز الحزمة */
+
+function bookPackage(btn){
+
+let selectedPackage=btn.getAttribute("data-package");
+
+window.location.href=
+"booking.html?package="+encodeURIComponent(selectedPackage);
+
+}
+
+
+</script>
+
+
+</body>
+</html>

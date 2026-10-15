@@ -1,0 +1,190 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Body */
+body {
+    background-color: #0f172a;
+    color: white;
+    transition: 0.3s;
+    padding-top: 120px; /* لتجنب تغطية المحتوى بالشريطين */
+}
+
+/* Topbar */
+.topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #020617;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 15px;
+    z-index: 1000;
+}
+
+.tools button {
+    margin: 3px;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 5px;
+    background: #22d3ee;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.tools button:hover {
+    background: #0ea5e9;
+    color: white;
+}
+
+.hotel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.hotel img {
+    width: 60px;
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 50px; /* أسفل التوب بار */
+    left: 0;
+    width: 100%;
+    background: #1e293b;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    z-index: 999;
+}
+
+.navbar a {
+    padding: 14px 18px;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.navbar a:hover {
+    background: #22d3ee;
+    color: black;
+}
+
+/* العنوان الرئيسي */
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Services Container */
+.services-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Card Styles */
+.service-card {
+    background: #1e293b;
+    border-radius: 10px;
+    width: 250px;
+    padding: 15px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.service-card img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.service-card h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.service-card p {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+/* Buttons */
+.more-btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    background: #22d3ee;
+    color: black;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.more-btn:hover {
+    background: #0ea5e9;
+    color: white;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    body {
+        padding-top: 140px;
+    }
+    .services-container {
+        gap: 15px;
+    }
+    .service-card {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .tools button {
+        padding: 5px 8px;
+        font-size: 12px;
+    }
+    .navbar a {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+}
+
+
+
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background: #1e293b;
+    position: fixed;
+    top: 60px; /* تحت التوب بار */
+    width: 100%;
+    z-index: 999;
+    height: 70px; /* زيادة ارتفاع الشريط */
+    align-items: center; /* لمحاذاة الروابط عموديًا في الوسط */
+}
+
+.navbar a {
+    padding: 20px 25px; /* زيادة مساحة داخلية لكل زر */
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+    white-space: nowrap; /* منع التفاف النص */
+}
+
+.navbar a:hover {
+    background: #22d3ee;
+    color: black;
+}

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>اتصل بنا</title>
+<link rel="stylesheet" href="contact.css">
+</head>
+<body>
+
+<!-- الشريط العلوي -->
+<div class="topbar">
+    <div class="tools">
+        <button onclick="increaseFont()">A+</button>
+        <button onclick="decreaseFont()">A-</button>
+        <button onclick="toggleDark()">🌙</button>
+        <button onclick="speakText()">🔊</button>
+        <button onclick="toggleLang()">EN / AR</button>
+    </div>
+
+    <div class="hotel">
+        <img src="logo.png" alt="Logo">
+        <b>Loving Homes</b>
+    </div>
+</div>
+
+<!-- Navbar -->
+<div class="navbar">
+    <a id="home" href="home.html">الرئيسية</a>
+    <a id="packages" href="Packages.html">الحزم</a>
+    <a id="rating" href="rating.html">التقييم</a>
+    <a id="contact" href="contact.html">اتصل بنا</a>
+    <a id="book" href="booking.html">احجز الآن</a>
+    <a id="reviews" href="rating.html">آراء العملاء</a>
+    <a id="products" href="products.html">المنتجات</a>
+    <a id="services" href="services.html">الخدمات</a>
+    <a id="about" href="about.html">عن الفندق</a>
+    <a id="gallery" href="gallery.html">معرض الصور</a>
+</div>
+
+<!-- عنوان الصفحة -->
+<h1 id="pageTitle">اتصل بنا</h1>
+
+<!-- نموذج الاتصال -->
+<form id="contactForm">
+    <label for="name" id="labelName">الاسم:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="email" id="labelEmail">البريد الإلكتروني:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="phone" id="labelPhone">رقم الهاتف:</label>
+    <input type="tel" id="phone" name="phone" required>
+
+    <label for="message" id="labelMessage">رسالتك:</label>
+    <textarea id="message" name="message" rows="5" required></textarea>
+
+    <button type="submit" id="submitBtn">إرسال</button>
+</form>
+
+<!-- استيراد وتوصيل قاعدة بيانات Firebase -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+  // إعدادات الربط الصحيحة الخاصة بمشروعك
+  const firebaseConfig = {
+    apiKey: "AIzaSyAK6utLH3mY_3HXBjNXjpVDjfBHznNprG8",
+    authDomain: "hotle-4b8f4.firebaseapp.com",
+    projectId: "hotle-4b8f4",
+    storageBucket: "hotle-4b8f4.firebasestorage.app",
+    messagingSenderId: "567449590337",
+    appId: "1:567449590337:web:36e0e0d4d9a58b8f2b04c0",
+    measurementId: "G-MP9BXZB5CC"
+  };
+
+  // تهيئة Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  /* إرسال البيانات إلى قاعدة البيانات عند الضغط على إرسال */
+  document.getElementById("contactForm").addEventListener("submit", async function(e){
+      e.preventDefault();
+
+      const nameVal = document.getElementById("name").value;
+      const emailVal = document.getElementById("email").value;
+      const phoneVal = document.getElementById("phone").value;
+      const messageVal = document.getElementById("message").value;
+
+      try {
+          // يتم حفظ البيانات في مجموعة "Name" وحقول مطابقة للقاعدة لديك
+          await addDoc(collection(db, "Name"), {
+              name: nameVal,
+              email: emailVal,
+              phone: phoneVal,
+              note: messageVal,
+              date: new Date().toISOString()
+          });
+
+          alert(lang === "ar" ? "تم إرسال رسالتك وحفظها بنجاح!" : "Your message has been sent and saved successfully!");
+          document.getElementById("contactForm").reset();
+      } catch (error) {
+          console.error("خطأ أثناء الإرسال: ", error);
+          alert("حدث خطأ أثناء حفظ البيانات، يرجى المحاولة مرة أخرى.");
+      }
+  });
+</script>
+
+<script>
+/* تكبير وتصغير الخط */
+function increaseFont() {
+    document.body.style.fontSize = "larger";
+}
+function decreaseFont() {
+    document.body.style.fontSize = "smaller";
+}
+
+/* الوضع الليلي */
+function toggleDark() {
+    if (document.body.style.background === "white") {
+        document.body.style.background = "#0f172a";
+        document.body.style.color = "white";
+    } else {
+        document.body.style.background = "white";
+        document.body.style.color = "black";
+    }
+}
+
+/* تحويل النص إلى صوت */
+function speakText() {
+    let text = document.body.innerText;
+    let speech = new SpeechSynthesisUtterance(text);
+    speech.lang = lang === "ar" ? "ar-SA" : "en-US";
+    speechSynthesis.speak(speech);
+}
+
+/* تغيير اللغة */
+let lang = "ar";
+function toggleLang() {
+    if (lang === "ar") {
+        document.documentElement.dir = "ltr";
+
+        document.getElementById("pageTitle").innerText = "Contact Us";
+        document.getElementById("labelName").innerText = "Name:";
+        document.getElementById("labelEmail").innerText = "Email:";
+        document.getElementById("labelPhone").innerText = "Phone:";
+        document.getElementById("labelMessage").innerText = "Your Message:";
+        document.getElementById("submitBtn").innerText = "Send";
+
+        document.getElementById("home").innerText = "Home";
+        document.getElementById("packages").innerText = "Packages";
+        document.getElementById("rating").innerText = "Rating";
+        document.getElementById("contact").innerText = "Contact";
+        document.getElementById("book").innerText = "Book Now";
+        document.getElementById("reviews").innerText = "Customer Reviews";
+        document.getElementById("products").innerText = "Products";
+        document.getElementById("services").innerText = "Services";
+        document.getElementById("about").innerText = "About Hotel";
+        document.getElementById("gallery").innerText = "Gallery";
+
+        lang = "en";
+    } else {
+        document.documentElement.dir = "rtl";
+
+        document.getElementById("pageTitle").innerText = "اتصل بنا";
+        document.getElementById("labelName").innerText = "الاسم:"; // تم تصحيح الخطأ هنا (إبدال : بـ =)
+        document.getElementById("labelEmail").innerText = "البريد الإلكتروني:";
+        document.getElementById("labelPhone").innerText = "رقم الهاتف:";
+        document.getElementById("labelMessage").innerText = "رسالتك:";
+        document.getElementById("submitBtn").innerText = "إرسال";
+
+        document.getElementById("home").innerText = "الرئيسية";
+        document.getElementById("packages").innerText = "الحزم";
+        document.getElementById("rating").innerText = "التقييم";
+        document.getElementById("contact").innerText = "اتصل بنا";
+        document.getElementById("book").innerText = "احجز الآن";
+        document.getElementById("reviews").innerText = "آراء العملاء";
+        document.getElementById("products").innerText = "المنتجات";
+        document.getElementById("services").innerText = "الخدمات";
+        document.getElementById("about").innerText = "عن الفندق";
+        document.getElementById("gallery").innerText = "معرض الصور";
+
+        lang = "ar";
+    }
+}
+</script>
+
+</body>
+</html>

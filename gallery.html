@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>معرض الصور</title>
+<link rel="stylesheet" href="gallery.css">
+</head>
+<body>
+
+<!-- الشريط العلوي -->
+<div class="topbar">
+    <div class="tools">
+        <button onclick="increaseFont()">A+</button>
+        <button onclick="decreaseFont()">A-</button>
+        <button onclick="toggleDark()">🌙</button>
+        <button onclick="speakText()">🔊</button>
+        <button onclick="toggleLang()">EN / AR</button>
+    </div>
+    <div class="hotel">
+        <img src="logo.png" alt="Logo">
+        <b>Loving Homes</b>
+    </div>
+</div>
+
+<!-- Navbar -->
+<div class="navbar">
+    <a id="home" href="home.html">الرئيسية</a>
+    <a id="packages" href="Packages.html">الحزم</a>
+    <a id="rating" href="rating.html">التقييم</a>
+    <a id="contact" href="contact.html">اتصل بنا</a>
+    <a id="book" href="booking.html">احجز الآن</a>
+    <a id="reviews" href="rating.html">آراء العملاء</a>
+    <a id="products" href="products.html">المنتجات</a>
+    <a id="services" href="services.html">الخدمات</a>
+    <a id="about" href="about.html">عن الفندق</a>
+    <a id="gallery" href="gallery.html">معرض الصور</a>
+</div>
+
+<!-- قسم المعرض -->
+<div class="gallery-container">
+    <h1 id="galleryTitle">معرض الصور</h1>
+    <div class="gallery-grid">
+        <div class="gallery-item"><img src="s.jpg" alt="Gallery 1"></div>
+        <div class="gallery-item"><img src="d.jpg" alt="Gallery 2"></div>
+        <div class="gallery-item"><img src="a.jpg" alt="Gallery 3"></div>
+        <div class="gallery-item"><img src="v.jpg" alt="Gallery 4"></div>
+        <div class="gallery-item"><img src="x.jpg" alt="Gallery 5"></div>
+        <div class="gallery-item"><img src="m.jpg" alt="Gallery 6"></div>
+        <div class="gallery-item"><img src="c.jpg" alt="Gallery 7"></div>
+        <div class="gallery-item"><img src="j.jpg" alt="Gallery 8"></div>
+    </div>
+</div>
+
+<script>
+// Font controls
+function increaseFont(){ document.body.style.fontSize="larger"; }
+function decreaseFont(){ document.body.style.fontSize="smaller"; }
+
+// Dark mode
+function toggleDark(){
+    if(document.body.style.background==="white"){
+        document.body.style.background="#0f172a";
+        document.body.style.color="white";
+    }else{
+        document.body.style.background="white";
+        document.body.style.color="black";
+    }
+}
+
+// Speak text
+function speakText(){
+    let text=document.body.innerText;
+    let speech=new SpeechSynthesisUtterance(text);
+    speech.lang=lang==="ar"?"ar-SA":"en-US";
+    speechSynthesis.speak(speech);
+}
+
+// Language toggle
+let lang="ar";
+function toggleLang(){
+    if(lang==="ar"){
+        document.documentElement.dir="ltr";
+        document.getElementById("home").innerText="Home";
+        document.getElementById("packages").innerText="Packages";
+        document.getElementById("rating").innerText="Rating";
+        document.getElementById("contact").innerText="Contact";
+        document.getElementById("book").innerText="Book Now";
+        document.getElementById("reviews").innerText="Customer Reviews";
+        document.getElementById("products").innerText="Products";
+        document.getElementById("services").innerText="Services";
+        document.getElementById("about").innerText="About Hotel";
+        document.getElementById("gallery").innerText="Gallery";
+        document.getElementById("galleryTitle").innerText="Photo Gallery";
+        lang="en";
+    } else {
+        document.documentElement.dir="rtl";
+        document.getElementById("home").innerText="الرئيسية";
+        document.getElementById("packages").innerText="الحزم";
+        document.getElementById("rating").innerText="التقييم";
+        document.getElementById("contact").innerText="اتصل بنا";
+        document.getElementById("book").innerText="احجز الآن";
+        document.getElementById("reviews").innerText="آراء العملاء";
+        document.getElementById("products").innerText="المنتجات";
+        document.getElementById("services").innerText="الخدمات";
+        document.getElementById("about").innerText="عن الفندق";
+        document.getElementById("gallery").innerText="معرض الصور";
+        document.getElementById("galleryTitle").innerText="معرض الصور";
+        lang="ar";
+    }
+}
+</script>
+
+</body>
+</html>

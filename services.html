@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>خدمات الفندق</title>
+<link rel="stylesheet" href="services.css">
+</head>
+<body>
+
+<!-- الشريط العلوي -->
+<div class="topbar">
+    <div class="tools">
+        <button onclick="increaseFont()">A+</button>
+        <button onclick="decreaseFont()">A-</button>
+        <button onclick="toggleDark()">🌙</button>
+        <button onclick="speakText()">🔊</button>
+        <button onclick="toggleLang()">EN / AR</button>
+    </div>
+    <div class="hotel">
+        <img src="logo.png" alt="Logo">
+        <b>Loving Homes</b>
+    </div>
+</div>
+
+<!-- Navbar -->
+<div class="navbar">
+    <a id="home" href="home.html">الرئيسية</a> 
+    <a id="packages" href="Packages.html">الحزم</a>
+    <a id="rating" href="rating.html">التقييم</a>
+    <a id="contact" href="contact.html">اتصل بنا</a>
+    <a id="book" href="booking.html">احجز الآن</a>
+    <a id="reviews" href="rating.html">آراء العملاء</a>
+    <a id="products" href="products.html">المنتجات</a>
+    <a id="services" href="services.html">الخدمات</a>
+    <a id="about" href="about.html">عن الفندق</a>
+    <a id="gallery" href="gallery.html">معرض الصور</a>
+</div>
+
+<h1 id="pageTitle">خدماتنا</h1>
+
+<div class="services-container">
+    <div class="service-card" data-id="1">
+        <img src="تدليك.jpg" alt="خدمة 1">
+        <h3 class="service-title" id="s1-title">تدليك للكلاب</h3>
+        <p class="service-desc" id="s1-desc">جلسات تدليك مريحة لكلبك لضمان الراحة والاسترخاء.</p>
+        <button class="more-btn" id="s1-btn">معرفة المزيد</button>
+    </div>
+    <div class="service-card" data-id="2">
+        <img src="رعاية صحية بالكلاب.jpg" alt="خدمة 2">
+        <h3 class="service-title" id="s2-title">استحمام فاخر</h3>
+        <p class="service-desc" id="s2-desc">استحمام احترافي مع منتجات طبيعية للعناية بالفراء.</p>
+        <button class="more-btn" id="s2-btn">معرفة المزيد</button>
+    </div>
+    <div class="service-card" data-id="3">
+        <img src="قص.jpg" alt="خدمة 3">
+        <h3 class="service-title" id="s3-title">قص أظافر</h3>
+        <p class="service-desc" id="s3-desc">قص أظافر دقيق وآمن لضمان راحة كلبك.</p>
+        <button class="more-btn" id="s3-btn">معرفة المزيد</button>
+    </div>
+    <div class="service-card" data-id="4">
+        <img src="تحسين السلوكيات.jpg" alt="خدمة 4">
+        <h3 class="service-title" id="s4-title">تدريب سلوكيات</h3>
+        <p class="service-desc" id="s4-desc">جلسات تدريب محترفة لتعليم الكلاب السلوكيات الجيدة.</p>
+        <button class="more-btn" id="s4-btn">معرفة المزيد</button>
+    </div>
+    <div class="service-card" data-id="5">
+        <img src="رعاية صحية.jpg" alt="خدمة 5">
+        <h3 class="service-title" id="s5-title">رعاية صحية</h3>
+        <p class="service-desc" id="s5-desc">فحوصات دورية ووقائية للحفاظ على صحة الكلاب.</p>
+        <button class="more-btn" id="s5-btn">معرفة المزيد</button>
+    </div>
+    <div class="service-card" data-id="6">
+        <img src="نزه ممتعه.jpg" alt="خدمة 6">
+        <h3 class="service-title" id="s6-title">نزهات ممتعة</h3>
+        <p class="service-desc" id="s6-desc">تنظيم نزهات يومية ومساحات للعب والمرح.</p>
+        <button class="more-btn" id="s6-btn">معرفة المزيد</button>
+    </div>
+</div>
+
+<script>
+let lang = "ar";
+
+/* أدوات */
+function increaseFont() { document.body.style.fontSize="larger"; }
+function decreaseFont() { document.body.style.fontSize="smaller"; }
+function toggleDark() {
+    if(document.body.style.background==="white"){
+        document.body.style.background="#0f172a";
+        document.body.style.color="white";
+    } else {
+        document.body.style.background="white";
+        document.body.style.color="black";
+    }
+}
+function speakText() {
+    let speech = new SpeechSynthesisUtterance(document.body.innerText);
+    speech.lang = lang==="ar"?"ar-SA":"en-US";
+    speechSynthesis.speak(speech);
+}
+
+/* تغيير اللغة */
+function toggleLang(){
+    if(lang==="ar"){
+        document.documentElement.dir="ltr";
+        document.getElementById("pageTitle").innerText="Our Services";
+
+        document.getElementById("home").innerText="Home";
+        document.getElementById("packages").innerText="Packages";
+        document.getElementById("rating").innerText="Rating";
+        document.getElementById("contact").innerText="Contact";
+        document.getElementById("book").innerText="Book Now";
+        document.getElementById("reviews").innerText="Customer Reviews";
+        document.getElementById("products").innerText="Products";
+        document.getElementById("services").innerText="Services";
+        document.getElementById("about").innerText="About Hotel";
+        document.getElementById("gallery").innerText="Gallery";
+
+        // الخدمات
+        document.getElementById("s1-title").innerText="Dog Massage";
+        document.getElementById("s1-desc").innerText="Relaxing massage sessions for your dog.";
+        document.getElementById("s1-btn").innerText="Learn More";
+
+        document.getElementById("s2-title").innerText="Luxury Bath";
+        document.getElementById("s2-desc").innerText="Professional bath with natural products.";
+        document.getElementById("s2-btn").innerText="Learn More";
+
+        document.getElementById("s3-title").innerText="Nail Trimming";
+        document.getElementById("s3-desc").innerText="Safe and precise nail trimming for your dog.";
+        document.getElementById("s3-btn").innerText="Learn More";
+
+        document.getElementById("s4-title").innerText="Behavior Training";
+        document.getElementById("s4-desc").innerText="Professional sessions to teach good behavior.";
+        document.getElementById("s4-btn").innerText="Learn More";
+
+        document.getElementById("s5-title").innerText="Health Care";
+        document.getElementById("s5-desc").innerText="Regular check-ups to maintain dog health.";
+        document.getElementById("s5-btn").innerText="Learn More";
+
+        document.getElementById("s6-title").innerText="Fun Outings";
+        document.getElementById("s6-desc").innerText="Daily outings and play areas for fun.";
+        document.getElementById("s6-btn").innerText="Learn More";
+
+        lang="en";
+    } else {
+        document.documentElement.dir="rtl";
+        document.getElementById("pageTitle").innerText="خدماتنا";
+
+        document.getElementById("home").innerText="الرئيسية";
+        document.getElementById("packages").innerText="الحزم";
+        document.getElementById("rating").innerText="التقييم";
+        document.getElementById("contact").innerText="اتصل بنا";
+        document.getElementById("book").innerText="احجز الآن";
+        document.getElementById("reviews").innerText="آراء العملاء";
+        document.getElementById("products").innerText="المنتجات";
+        document.getElementById("services").innerText="الخدمات";
+        document.getElementById("about").innerText="عن الفندق";
+        document.getElementById("gallery").innerText="معرض الصور";
+
+        // الخدمات
+        document.getElementById("s1-title").innerText="تدليك للكلاب";
+        document.getElementById("s1-desc").innerText="جلسات تدليك مريحة لكلبك لضمان الراحة والاسترخاء.";
+        document.getElementById("s1-btn").innerText="معرفة المزيد";
+
+        document.getElementById("s2-title").innerText="استحمام فاخر";
+        document.getElementById("s2-desc").innerText="استحمام احترافي مع منتجات طبيعية للعناية بالفراء.";
+        document.getElementById("s2-btn").innerText="معرفة المزيد";
+
+        document.getElementById("s3-title").innerText="قص أظافر";
+        document.getElementById("s3-desc").innerText="قص أظافر دقيق وآمن لضمان راحة كلبك.";
+        document.getElementById("s3-btn").innerText="معرفة المزيد";
+
+        document.getElementById("s4-title").innerText="تدريب سلوكيات";
+        document.getElementById("s4-desc").innerText="جلسات تدريب محترفة لتعليم الكلاب السلوكيات الجيدة.";
+        document.getElementById("s4-btn").innerText="معرفة المزيد";
+
+        document.getElementById("s5-title").innerText="رعاية صحية";
+        document.getElementById("s5-desc").innerText="فحوصات دورية ووقائية للحفاظ على صحة الكلاب.";
+        document.getElementById("s5-btn").innerText="معرفة المزيد";
+
+        document.getElementById("s6-title").innerText="نزهات ممتعة";
+        document.getElementById("s6-desc").innerText="تنظيم نزهات يومية ومساحات للعب والمرح.";
+        document.getElementById("s6-btn").innerText="معرفة المزيد";
+
+        lang="ar";
+    }
+}
+</script>
+</body>
+</html>

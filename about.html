@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>عن الفندق</title>
+<link rel="stylesheet" href="about.css">
+</head>
+<body>
+
+<!-- الشريط العلوي -->
+<div class="topbar">
+    <div class="tools">
+        <button onclick="increaseFont()">A+</button>
+        <button onclick="decreaseFont()">A-</button>
+        <button onclick="toggleDark()">🌙</button>
+        <button onclick="speakText()">🔊</button>
+        <button onclick="toggleLang()">EN / AR</button>
+    </div>
+    <div class="hotel">
+        <img src="logo.png" alt="Logo">
+        <b>Loving Homes</b>
+    </div>
+</div>
+
+<!-- Navbar -->
+<div class="navbar">
+    <a id="home" href="home.html">الرئيسية</a>
+   <a id="packages" href="Packages.html">الحزم</a>
+    <a id="rating" href="rating.html">التقييم</a>
+    <a id="contact" href="contact.html">اتصل بنا</a>
+    <a id="book" href="booking.html">احجز الآن</a>
+    <a id="reviews" href="rating.html">آراء العملاء</a>
+    <a id="products" href="products.html">المنتجات</a>
+    <a id="services" href="rating.html">الخدمات</a>
+    <a id="about" href="about.html">عن الفندق</a>
+    <a id="gallery" href="gallery.html">معرض الصور</a>
+</div>
+
+<!-- Hero Video -->
+<div class="hero-video">
+    <video autoplay muted loop>
+        <source src="ve.mp4" type="video/mp4">
+    </video>
+    <div class="hero-text-overlay">
+        <h1 id="aboutTitle">عن فندق Loving Homes للكلاب</h1>
+        <p id="aboutText">أفضل تجربة إقامة للكلاب مع بيئة آمنة وخدمات مميزة تجعل كل ضيف سعيد.</p>
+    </div>
+</div>
+
+<!-- قسم المربعات -->
+<div class="about-cards">
+    <div class="card">
+        <img src="غرفة لعب خاصة بالكلاب.jpg" alt="Service 1">
+        <p>غرفة لعب واسعة وآمنة</p>
+    </div>
+    <div class="card">
+        <img src="e.jpg" alt="Service 2">
+        <p>وجبات صحية ومتوازنة</p>
+    </div>
+    <div class="card">
+        <img src="ss.jpg" alt="Service 3">
+        <p>منتزه خاص للكلاب</p>
+    </div>
+    <div class="card">
+        <img src="رعاية صحية بالكلاب.jpg" alt="Service 4">
+        <p>رعاية صحية يومية</p>
+    </div>
+    <div class="card">
+        <img src="yyy.jpg" alt="Service 5">
+        <p>نادي صحي وسبا للكلاب</p>
+    </div>
+    <div class="card">
+        <img src="ee.jpg" alt="Service 6">
+        <p>خدمة نقل ذهاب وإياب</p>
+    </div>
+</div>
+
+<script>
+// Font controls
+function increaseFont(){ document.body.style.fontSize="larger"; }
+function decreaseFont(){ document.body.style.fontSize="smaller"; }
+
+// Dark mode
+function toggleDark(){
+    if(document.body.style.background==="white"){
+        document.body.style.background="#0f172a";
+        document.body.style.color="white";
+    }else{
+        document.body.style.background="white";
+        document.body.style.color="black";
+    }
+}
+
+// Speak text
+function speakText(){
+    let text=document.body.innerText;
+    let speech=new SpeechSynthesisUtterance(text);
+    speech.lang=lang==="ar"?"ar-SA":"en-US";
+    speechSynthesis.speak(speech);
+}
+
+// Language toggle
+let lang="ar";
+function toggleLang(){
+    if(lang==="ar"){
+        document.documentElement.dir="ltr";
+        document.getElementById("home").innerText="Home";
+        document.getElementById("packages").innerText="Packages";
+        document.getElementById("rating").innerText="Rating";
+        document.getElementById("contact").innerText="Contact";
+        document.getElementById("book").innerText="Book Now";
+        document.getElementById("reviews").innerText="Customer Reviews";
+        document.getElementById("products").innerText="Products";
+        document.getElementById("services").innerText="Services";
+        document.getElementById("about").innerText="About Hotel";
+        document.getElementById("gallery").innerText="Gallery";
+
+        document.getElementById("aboutTitle").innerText="About Loving Homes for Dogs";
+        document.getElementById("aboutText").innerText="Best dog stay experience with a safe environment and top-notch services.";
+
+        // Cards texts
+        const cards = document.querySelectorAll(".about-cards .card p");
+        const enTexts = [
+            "Spacious and safe play room",
+            "Healthy and balanced meals",
+            "Private dog park",
+            "Daily health care",
+            "Dog spa and fitness club",
+            "Pick-up and drop-off service"
+        ];
+        cards.forEach((p,i)=>{p.innerText=enTexts[i];});
+
+        lang="en";
+    } else {
+        document.documentElement.dir="rtl";
+        document.getElementById("home").innerText="الرئيسية";
+        document.getElementById("packages").innerText="الحزم";
+        document.getElementById("rating").innerText="التقييم";
+        document.getElementById("contact").innerText="اتصل بنا";
+        document.getElementById("book").innerText="احجز الآن";
+        document.getElementById("reviews").innerText="آراء العملاء";
+        document.getElementById("products").innerText="المنتجات";
+        document.getElementById("services").innerText="الخدمات";
+        document.getElementById("about").innerText="عن الفندق";
+        document.getElementById("gallery").innerText="معرض الصور";
+
+        document.getElementById("aboutTitle").innerText="عن فندق Loving Homes للكلاب";
+        document.getElementById("aboutText").innerText="أفضل تجربة إقامة للكلاب مع بيئة آمنة وخدمات مميزة تجعل كل ضيف سعيد.";
+
+        const cards = document.querySelectorAll(".about-cards .card p");
+        const arTexts = [
+            "غرفة لعب واسعة وآمنة",
+            "وجبات صحية ومتوازنة",
+            "منتزه خاص للكلاب",
+            "رعاية صحية يومية",
+            "نادي صحي وسبا للكلاب",
+            "خدمة نقل ذهاب وإياب"
+        ];
+        cards.forEach((p,i)=>{p.innerText=arTexts[i];});
+
+        lang="ar";
+    }
+}
+</script>
+
+</body>
+</html>

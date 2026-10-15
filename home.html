@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="home.css">
+<title>Loving Homes</title>
+
+
+</head>
+
+<body>
+
+<!-- الشريط العلوي -->
+
+<div class="topbar">
+
+<div class="tools">
+
+<button onclick="increaseFont()">A+</button>
+<button onclick="decreaseFont()">A-</button>
+
+<button onclick="toggleDark()">🌙</button>
+
+<button onclick="speakText()">🔊</button>
+
+<button onclick="toggleLang()">EN / AR</button>
+
+</div>
+
+<div class="hotel">
+
+<img src="logo.png">
+
+<b>Loving Homes</b>
+
+</div>
+
+</div>
+
+<!-- شريط الصفحات -->
+
+<div class="navbar">
+
+    <a id="home" href="home.html">الرئيسية</a>
+    <a id="packages" href="Packages.html">الحزم</a>
+    <a id="rating" href="rating.html">التقييم</a>
+    <a id="contact" href="contact.html">اتصل بنا</a>
+    <a id="book" href="booking.html">احجز الآن</a>
+    <a id="reviews" href="rating.html">آراء العملاء</a>
+    <a id="products" href="products.html">المنتجات</a>
+    <a id="services" href="services.html">الخدمات</a>
+    <a id="about" href="about.html">عن الفندق</a>
+    <a id="gallery" href="gallery.html">معرض الصور</a>
+  
+  </div>
+
+<!-- القسم الرئيسي -->
+
+<div class="hero">
+
+<img src="tt.jpg">
+
+<div class="hero-text">
+
+<h1 id="welcomeTitle">مرحباً بكم في فندق Loving Homes</h1>
+
+<p id="welcomeText">
+نقدم أفضل رعاية للكلاب في هونغ كونغ حيث يشعر كلبك وكأنه في منزله.
+</p>
+
+</div>
+
+</div>
+
+<!-- لماذا تختارنا -->
+
+<div class="why">
+
+<h2 id="whyTitle">لماذا تختار لوفينغ هومز ؟</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3 id="c1">رعاية 24 ساعة</h3>
+</div>
+
+<div class="card">
+<h3 id="c2">أماكن لعب واسعة</h3>
+</div>
+
+<div class="card">
+<h3 id="c3">رعاية طبية</h3>
+</div>
+
+<div class="card">
+<h3 id="c4">غرف مريحة</h3>
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+/* تكبير الخط */
+
+function increaseFont(){
+document.body.style.fontSize="larger";
+}
+
+/* تصغير الخط */
+
+function decreaseFont(){
+document.body.style.fontSize="smaller";
+}
+
+/* الوضع الليلي */
+
+function toggleDark(){
+
+if(document.body.style.background=="white"){
+
+document.body.style.background="#0f172a";
+document.body.style.color="white";
+
+}else{
+
+document.body.style.background="white";
+document.body.style.color="black";
+
+}
+
+}
+
+/* تحويل النص لصوت */
+
+function speakText(){
+
+let text=document.body.innerText;
+
+let speech=new SpeechSynthesisUtterance(text);
+
+speech.lang="ar";
+
+speechSynthesis.speak(speech);
+
+}
+
+/* تغيير اللغة */
+
+let lang="ar";
+
+function toggleLang(){
+
+if(lang==="ar"){
+
+document.documentElement.dir="ltr";
+
+document.getElementById("home").innerText="Home";
+document.getElementById("packages").innerText="Packages";
+document.getElementById("rating").innerText="Rating";
+document.getElementById("contact").innerText="Contact Us";
+document.getElementById("book").innerText="Book Now";
+document.getElementById("reviews").innerText="Customer Reviews";
+document.getElementById("products").innerText="Products";
+document.getElementById("services").innerText="Services";
+document.getElementById("about").innerText="About Hotel";
+document.getElementById("gallery").innerText="Gallery";
+
+document.getElementById("welcomeTitle").innerText="Welcome to Loving Homes Dog Hotel";
+document.getElementById("welcomeText").innerText="We provide the best care for dogs in Hong Kong.";
+
+document.getElementById("whyTitle").innerText="Why Choose Loving Homes";
+
+document.getElementById("c1").innerText="24 Hour Care";
+document.getElementById("c2").innerText="Large Play Areas";
+document.getElementById("c3").innerText="Medical Care";
+document.getElementById("c4").innerText="Comfortable Rooms";
+
+lang="en";
+
+}else{
+
+document.documentElement.dir="rtl";
+
+document.getElementById("home").innerText="الرئيسية";
+document.getElementById("packages").innerText="الحزم";
+document.getElementById("rating").innerText="التقييم";
+document.getElementById("contact").innerText="اتصل بنا";
+document.getElementById("book").innerText="احجز الآن";
+document.getElementById("reviews").innerText="آراء العملاء";
+document.getElementById("products").innerText="المنتجات";
+document.getElementById("services").innerText="الخدمات";
+document.getElementById("about").innerText="عن الفندق";
+document.getElementById("gallery").innerText="معرض الصور";
+
+document.getElementById("welcomeTitle").innerText="مرحباً بكم في فندق Loving Homes";
+document.getElementById("welcomeText").innerText="نقدم أفضل رعاية للكلاب في هونغ كونغ حيث يشعر كلبك وكأنه في منزله";
+
+document.getElementById("whyTitle").innerText="لماذا تختار لوفينغ هومز";
+
+document.getElementById("c1").innerText="رعاية 24 ساعة";
+document.getElementById("c2").innerText="أماكن لعب واسعة";
+document.getElementById("c3").innerText="رعاية طبية";
+document.getElementById("c4").innerText="غرف مريحة";
+
+lang="ar";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

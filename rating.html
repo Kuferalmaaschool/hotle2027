@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>آراء العملاء</title>
+<link rel="stylesheet" href="rating.css">
+</head>
+<body>
+
+<!-- الشريط العلوي -->
+<div class="topbar">
+    <div class="tools">
+        <button onclick="increaseFont()">A+</button>
+        <button onclick="decreaseFont()">A-</button>
+        <button onclick="toggleDark()">🌙</button>
+        <button onclick="speakText()">🔊</button>
+        <button onclick="toggleLang()">EN / AR</button>
+    </div>
+
+    <div class="hotel">
+        <img src="logo.png" alt="Logo">
+        <b>Loving Homes</b>
+    </div>
+</div>
+
+<!-- Navbar -->
+<div class="navbar">
+    <a id="home" href="home.html">الرئيسية</a> 
+  <a id="packages" href="Packages.html">الحزم</a>
+    <a id="packages" href="Packages.html">الحزم</a>
+    <a id="rating" href="rating.html">التقييم</a>
+    <a id="contact" href="contact.html">اتصل بنا</a>
+    <a id="book" href="booking.html">احجز الآن</a>
+    <a id="reviews" href="rating.html">آراء العملاء</a>
+    <a id="products" href="products.html">المنتجات</a>
+    <a id="services" href="services.html">الخدمات</a>
+    <a id="about" href="about.html">عن الفندق</a>
+    <a id="gallery" href="gallery.html">معرض الصور</a>
+</div>
+
+<h1 id="pageTitle">آراء العملاء</h1>
+
+<!-- قسم التقييمات -->
+<div class="reviews-section" id="reviewsSection">
+    <div class="review-card">
+        <h3 class="reviewer-name">محمد علي</h3>
+        <div class="stars">★★★★☆</div>
+        <p class="review-text">كانت تجربة رائعة بالنسبة لكلبي، الفندق نظيف والخدمة ممتازة.</p>
+    </div>
+    <div class="review-card">
+        <h3 class="reviewer-name">سارة يوسف</h3>
+        <div class="stars">★★★★★</div>
+        <p class="review-text">إفطار لذيذ، الغرفة مريحة جداً لقد اعجب كلبي فعلاً</p>
+    </div>
+</div>
+
+<!-- نموذج إضافة تقييم -->
+<div class="add-review">
+    <h2>أضف تقييمك</h2>
+    <label for="reviewName">اسمك:</label>
+    <input type="text" id="reviewName" placeholder="اكتب اسمك">
+
+    <label>التقييم بالنجوم:</label>
+    <div class="star-rating">
+        <span data-value="1">☆</span>
+        <span data-value="2">☆</span>
+        <span data-value="3">☆</span>
+        <span data-value="4">☆</span>
+        <span data-value="5">☆</span>
+    </div>
+
+    <label for="reviewText">ملاحظاتك:</label>
+    <textarea id="reviewText" placeholder="اكتب ملاحظاتك هنا"></textarea>
+
+    <button onclick="submitReview()">إرسال التقييم</button>
+</div>
+
+<script>
+/* تكبير وتصغير الخط */
+function increaseFont() { document.body.style.fontSize = "larger"; }
+function decreaseFont() { document.body.style.fontSize = "smaller"; }
+
+/* الوضع الليلي */
+function toggleDark() {
+    if(document.body.style.background === "white") {
+        document.body.style.background = "#0f172a"; document.body.style.color="white";
+    } else { document.body.style.background = "white"; document.body.style.color="black"; }
+}
+
+/* تحويل النص إلى صوت */
+function speakText() {
+    let text=document.body.innerText;
+    let speech=new SpeechSynthesisUtterance(text);
+    speech.lang = lang==="ar" ? "ar-SA":"en-US";
+    speechSynthesis.speak(speech);
+}
+
+// نظام اللغة مع التغيير للنصوص داخل التقييمات
+let lang = "ar";
+function toggleLang() {
+    if(lang==="ar"){
+        document.documentElement.dir="ltr";
+
+        // Navbar
+        document.getElementById("home").innerText="Home";
+        document.getElementById("packages").innerText="Packages";
+        document.getElementById("rating").innerText="Rating";
+        document.getElementById("contact").innerText="Contact";
+        document.getElementById("book").innerText="Book Now";
+        document.getElementById("reviews").innerText="Customer Reviews";
+        document.getElementById("products").innerText="Products";
+        document.getElementById("services").innerText="Services";
+        document.getElementById("about").innerText="About Hotel";
+        document.getElementById("gallery").innerText="Gallery";
+
+        // عنوان الصفحة
+        document.getElementById("pageTitle").innerText="Customer Reviews";
+
+        // نموذج إضافة تقييم
+        document.querySelector(".add-review h2").innerText="Add Your Review";
+        document.querySelector("label[for='reviewName']").innerText="Your Name:";
+        document.querySelector("label[for='reviewText']").innerText="Your Feedback:";
+        document.querySelector(".add-review button").innerText="Submit Review";
+
+        lang="en";
+    } else {
+        document.documentElement.dir="rtl";
+
+        // Navbar
+        document.getElementById("home").innerText="الرئيسية";
+        document.getElementById("packages").innerText="الحزم";
+        document.getElementById("rating").innerText="التقييم";
+        document.getElementById("contact").innerText="اتصل بنا";
+        document.getElementById("book").innerText="احجز الآن";
+        document.getElementById("reviews").innerText="آراء العملاء";
+        document.getElementById("products").innerText="المنتجات";
+        document.getElementById("services").innerText="الخدمات";
+        document.getElementById("about").innerText="عن الفندق";
+        document.getElementById("gallery").innerText="معرض الصور";
+
+        // عنوان الصفحة
+        document.getElementById("pageTitle").innerText="آراء العملاء";
+
+        // نموذج إضافة تقييم
+        document.querySelector(".add-review h2").innerText="أضف تقييمك";
+        document.querySelector("label[for='reviewName']").innerText="اسمك:";
+        document.querySelector("label[for='reviewText']").innerText="ملاحظاتك:";
+        document.querySelector(".add-review button").innerText="إرسال التقييم";
+
+        lang="ar";
+    }
+}
+/* نظام اختيار النجوم */
+let selectedStars=0;
+const stars=document.querySelectorAll(".star-rating span");
+stars.forEach(star=>{
+    star.addEventListener("click",()=>{
+        selectedStars=star.getAttribute("data-value");
+        stars.forEach(s=>{
+            s.textContent = s.getAttribute("data-value")<=selectedStars ? "★":"☆";
+        });
+    });
+});
+
+/* إرسال التقييم */
+function submitReview(){
+    const name=document.getElementById("reviewName").value.trim() || "مجهول";
+    const text=document.getElementById("reviewText").value.trim() || "-";
+    if(selectedStars===0){ alert("اختر عدد النجوم"); return; }
+
+    // إنشاء بطاقة التقييم
+    const card=document.createElement("div");
+    card.classList.add("review-card");
+    card.innerHTML=`
+        <h3 class="reviewer-name">${name}</h3>
+        <div class="stars">${"★".repeat(selectedStars) + "☆".repeat(5-selectedStars)}</div>
+        <p class="review-text">${text}</p>
+    `;
+    document.getElementById("reviewsSection").prepend(card);
+
+    // إعادة تعيين النموذج
+    document.getElementById("reviewName").value="";
+    document.getElementById("reviewText").value="";
+    selectedStars=0;
+    stars.forEach(s=>s.textContent="☆");
+}
+</script>
+
+</body>
+</html>
